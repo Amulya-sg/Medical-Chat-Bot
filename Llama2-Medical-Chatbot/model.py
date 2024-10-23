@@ -33,7 +33,7 @@ def set_custom_prompt():
                             input_variables=['context', 'question'])
     return prompt
 
-#Retrieval QA Chain
+
 def retrieval_qa_chain(llm, prompt, db):
     qa_chain = RetrievalQA.from_chain_type(llm=llm,
                                        chain_type='stuff',
@@ -43,9 +43,7 @@ def retrieval_qa_chain(llm, prompt, db):
                                        )
     return qa_chain
 
-#Loading the model
 def load_llm():
-    # Load the locally downloaded model here
     llm = CTransformers(
         model = "llama-2-7b-chat.ggmlv3.q8_0.bin",
         model_type="llama",
@@ -54,7 +52,6 @@ def load_llm():
     )
     return llm
 
-#QA Model Function
 def qa_bot():
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",
                                        model_kwargs={'device': 'cpu'})
@@ -65,7 +62,6 @@ def qa_bot():
 
     return qa
 
-#output function
 def final_result(query):
     qa_result = qa_bot()
     response = qa_result({'query': query})
@@ -79,7 +75,6 @@ async def query_openai(query):
     )
     return response.choices[0].text.strip()
 
-#chainlit code
 @cl.on_chat_start
 async def start():
     chain = qa_bot()
@@ -100,17 +95,10 @@ async def main(message: cl.Message):
     cb.answer_reached = True
     res = await chain.acall(message.content, callbacks=[cb])
     answer = res["result"]
-    # sources = res["source_documents"]
-
-    # if sources:
-    #     answer += f"\nSources:" + str(sources)
-    # else:
-    #     answer += "\nNo sources found"
+   
     if re.search(r'\bI don\'t know\b', answer, re.IGNORECASE):
         answer = await query_openai(message.content)
-    # await cl.Message(content=answer).send()
 
     await cl.Message(content=str(answer)).send()
-    # await cl.Message(content=answer).send()
 
 
