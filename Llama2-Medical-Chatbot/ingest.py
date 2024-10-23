@@ -6,7 +6,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 DATA_PATH = 'data/'
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
-# Create vector database
+
 def create_vector_db():
     loader = DirectoryLoader(DATA_PATH,
                              glob='*.pdf',
