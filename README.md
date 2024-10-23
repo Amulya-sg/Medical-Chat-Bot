@@ -13,6 +13,7 @@ With the power of Llama 2 and these rich datasets, MedBot offers detailed, conte
 - **Llama 2-based RAG Model**: Combines conversational AI with real-time retrieval from large medical datasets.
 - **PDF Support**: Ingests content from PDFs and a curated Q&A dataset.
 - **Interactive & Informative**: Aimed at promoting health awareness and patient education.
+- **User friendly Interface**: Clean and friendly interface makes it easy for user to use the application. 
 
 ---
 
