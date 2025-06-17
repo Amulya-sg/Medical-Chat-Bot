@@ -16,7 +16,10 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
-custom_prompt_template = """Use the following pieces of information to ask the user questions and give feedback.
+custom_prompt_template = """
+You are a helpful and knowledgeable medical assistant. Use the following context from medical documents to accurately and clearly answer the user's question.
+If the context does not contain enough information, respond politely and suggest consulting a medical professional.
+Do not make up information. Do not provide medical diagnosis. Only answer based on the provided context. If unsure, say "I don't have enough information to answer that. Please consult a healthcare provider."
 
 
 Context: {context}
