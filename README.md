@@ -18,4 +18,4 @@ With the power of Llama 2 and these rich datasets, MedBot offers detailed, conte
 ---
 
 ### Disclaimer:
-MedBot is not a replacement for a licensed healthcare provider. Always seek the advice of a qualified professional for medical concerns.
+MedBot is not a replacement for a licensed healthcare provider. Always seek the advice of a qualified professional for medical concerns
